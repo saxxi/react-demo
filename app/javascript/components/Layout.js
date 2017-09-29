@@ -11,7 +11,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 
-import Login from './login'
+import Login from './Login'
 
 const styles = theme => ({
   root: {
