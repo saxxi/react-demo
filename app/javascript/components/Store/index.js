@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory'
 import createSagaMiddleware from 'redux-saga'
 
 import reducers from '../Reducers'
-// import sagas from '../sagas'
+import sagas from '../Sagas'
 
 const storeFactory = () => {
   const history = createHistory()
@@ -15,19 +15,19 @@ const storeFactory = () => {
   let middleware = applyMiddleware(
     logger,
     routerMiddleware(history),
-    // sagaMiddleware
+    sagaMiddleware
   )
 
-  // if (process.env.NODE_ENV === 'development' && window.devToolsExtension) {
-  //   middleware = compose(middleware, window.devToolsExtension())
-  // }
+  if (process.env.NODE_ENV === 'development' && window.devToolsExtension) {
+    middleware = compose(middleware, window.devToolsExtension())
+  }
 
   const store = createStore(
     reducers,
     {},
     middleware
   )
-  // sagaMiddleware.run(sagas)
+  sagaMiddleware.run(sagas)
   return { store, history }
 }
 

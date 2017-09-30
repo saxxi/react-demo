@@ -3,9 +3,10 @@ function documentsReducer(state = {}, action) {
     case 'documents.FETCH_LIST_SUCCESS':
       return {
         ...state,
-        pageCount: action.documents.meta.page_count,
-        pageNumber: action.documents.meta.page_number,
-        list: action.documents.list,
+        list: action.documents,
+        pageCount: action.pageCount,
+        pageNumber: action.pageNumber,
+        pageSize: action.pageSize,
       }
     default:
       return state
