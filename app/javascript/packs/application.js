@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
@@ -9,8 +10,8 @@ import '../styles/app'
 
 // # App
 import App from '../components/App'
-import {storeFactory} from '../components/Store'
-const {store} = storeFactory() // , history
+import { storeFactory } from '../components/Store'
+const { store, history } = storeFactory()
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -19,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
-        <App />
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
       </Provider>
     </MuiThemeProvider>,
     document.body.appendChild(document.createElement('div')),

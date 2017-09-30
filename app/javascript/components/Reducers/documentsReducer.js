@@ -1,4 +1,4 @@
-export default function documents(state = {}, action) {
+function documentsReducer(state = {}, action) {
   switch (action.type) {
     case 'documents.FETCH_LIST_SUCCESS':
       return {
@@ -11,3 +11,5 @@ export default function documents(state = {}, action) {
       return state
   }
 }
+
+export {documentsReducer}

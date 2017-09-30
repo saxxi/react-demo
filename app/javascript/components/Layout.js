@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AppBar from 'material-ui/AppBar'
 import { withStyles } from 'material-ui/styles'
@@ -77,9 +78,17 @@ class Layout extends Component {
               </div>
             </Drawer>
             <Typography type="title" color="inherit" className={classes.flex}>
-              React Demo
+              <Button
+                color="contrast"
+                to={'/'}
+                component={props => <Link {...props}/>}
+              >React Demo</Button>
             </Typography>
-            <Button onClick={this.handleClickOpen} color="contrast">About</Button>
+            <Button
+              color="contrast"
+              to={'/about'}
+              component={props => <Link {...props}/>}
+            >About</Button>
             <Login />
           </Toolbar>
         </AppBar>
