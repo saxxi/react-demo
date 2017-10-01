@@ -2,7 +2,7 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 
 import Layout from './Layout'
-import Home from './Home'
+import DocumentList from './DocumentList'
 import {
   About,
   NotFound
@@ -12,7 +12,7 @@ const App = () => (
   <div>
     <Layout>
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/" component={DocumentList}/>
         <Route exact path="/About" component={About}/>
         <Route component={NotFound}/>
       </Switch>

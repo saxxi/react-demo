@@ -16,7 +16,7 @@ export function *listDocuments(action) {
     pageNumber,
     pageSize,
     documents: result.data.documents,
-    pageCount: result.data.meta.page_count,
+    totalCount: result.data.meta.total_count,
   })
 }
 

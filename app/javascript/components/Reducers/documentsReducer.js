@@ -4,7 +4,7 @@ function documentsReducer(state = {}, action) {
       return {
         ...state,
         list: action.documents,
-        pageCount: action.pageCount,
+        totalCount: action.totalCount,
         pageNumber: action.pageNumber,
         pageSize: action.pageSize,
       }

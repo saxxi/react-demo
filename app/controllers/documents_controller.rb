@@ -8,7 +8,8 @@ class DocumentsController < ApplicationController
     page_number = [page_number.to_i, 1].max
 
     @documents = Document.page(page_number).per(page_size)
-    @page_count = @documents.total_pages
+    @total_pages = @documents.total_pages
+    @total_count = @documents.total_count
   end
 
   def show
