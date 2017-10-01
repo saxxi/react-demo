@@ -13,4 +13,20 @@ function documentsReducer(state = {}, action) {
   }
 }
 
-export {documentsReducer}
+function documentReducer(state = {}, action) {
+  switch (action.type) {
+    case 'document.FETCH_DOCUMENT_SUCCESS':
+      return {
+        ...state,
+        ...action.document,
+      }
+      break;
+    default:
+      return state
+  }
+}
+
+export {
+  documentsReducer,
+  documentReducer,
+}

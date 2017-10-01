@@ -16,6 +16,11 @@ const getDocuments = (pageNumber, pageSize) => (
   })
 )
 
+const getDocument = (documentId) => (
+  instance.get(`/documents/${documentId}.json`)
+)
+
 export {
-  getDocuments
+  getDocuments,
+  getDocument,
 }

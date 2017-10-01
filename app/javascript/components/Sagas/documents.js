@@ -1,15 +1,17 @@
-import {call, put} from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 
-import {getDocuments} from '../Services/documents-api'
+import { getDocuments, getDocument } from '../Services/documents-api'
+import { handleServerError } from '../Utils/serverUtils'
 
 export function *listDocuments(action) {
-  const {pageNumber, pageSize} = action
-  const result = yield call(getDocuments, pageNumber, pageSize)
+  const { pageNumber, pageSize } = action
+  let result
 
-  // TODO: continue here
-  // .catch((error) => {
-  //   if (error && error.response && error.response.status == 401) { ... }
-  // })
+  try {
+    result = yield call(getDocuments, pageNumber, pageSize)
+  } catch (e) {
+    return yield put(handleServerError(e))
+  }
 
   yield put({
     type: 'documents.FETCH_LIST_SUCCESS',
@@ -17,6 +19,20 @@ export function *listDocuments(action) {
     pageSize,
     documents: result.data.documents,
     totalCount: result.data.meta.total_count,
+  })
+}
+
+export function *fetchDocument(action) {
+  let result
+  try {
+    result = yield call(getDocument, action.documentId)
+  } catch (e) {
+    return yield put(handleServerError(e))
+  }
+
+  yield put({
+    type: 'document.FETCH_DOCUMENT_SUCCESS',
+    document: result.data,
   })
 }
 

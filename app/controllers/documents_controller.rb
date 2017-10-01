@@ -1,4 +1,6 @@
-class DocumentsController < ApplicationController
+class DocumentsController < ApplicationControllerApi
+
+  # before_action :authenticate!
 
   def index
     page_size = params[:page_size] || 10
