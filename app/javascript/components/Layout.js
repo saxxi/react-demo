@@ -12,7 +12,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 
-import Login from './Login'
+import Login from './Ui/Login'
 
 const styles = theme => ({
   root: {

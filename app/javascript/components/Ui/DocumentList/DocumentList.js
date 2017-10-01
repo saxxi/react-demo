@@ -24,16 +24,9 @@ const styles = theme => ({
   },
 })
 
-const selectRow = (evt, documentId) => {
-  console.log(documentId);
-}
-const deleteRow = (evt, documentId) => {
-  console.log('delete', documentId);
-}
-
 const DocumentList = ({ classes, list,
     pageNumber, totalCount, pageSize,
-    handleChangePage }) => {
+    selectRow, deleteRow, handleChangePage }) => {
   return (
     <Paper className={classes.root}>
       {
@@ -88,7 +81,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleChangePage: (evt, page) => {
       dispatch(push(`?page=${page}`))
-    }
+    },
+    selectRow: (evt, documentId) => {
+      dispatch(push(`/documents/${documentId}`))
+    },
+    deleteRow: (evt, documentId) => {
+      console.log('delete', documentId);
+    },
   }
 }
 
