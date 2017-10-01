@@ -89,6 +89,11 @@ class Layout extends Component {
               to={'/about'}
               component={props => <Link {...props}/>}
             >About</Button>
+            <Button
+              color="contrast"
+              to={'/documents'}
+              component={props => <Link {...props}/>}
+            >Documents</Button>
             <Login />
           </Toolbar>
         </AppBar>
