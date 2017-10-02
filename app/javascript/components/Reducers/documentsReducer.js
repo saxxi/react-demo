@@ -20,7 +20,7 @@ function documentReducer(state = {}, action) {
         ...state,
         ...action.document,
       }
-      break;
+      break
     default:
       return state
   }

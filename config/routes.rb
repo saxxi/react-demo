@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   post 'auth_user' => 'authentication#authenticate_user'
 
-  resources :documents, only: [:index, :show]
+  resources :documents
 
 end

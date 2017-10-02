@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { withStyles } from 'material-ui/styles'
+import { Link } from 'react-router-dom'
 import Table, {
   TableHead,
   TableRow,
@@ -10,6 +11,7 @@ import Table, {
   TableFooter,
   TablePagination,
 } from 'material-ui/Table'
+import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 
 import DocumentRow from './DocumentRow'
@@ -29,6 +31,9 @@ const DocumentList = ({ classes, list,
     selectRow, deleteRow, handleChangePage }) => {
   return (
     <Paper className={classes.root}>
+      <Button
+        to={'/documents/new'}
+        component={props => <Link {...props}/>}>Add</Button>
       {
         (list.length === 0) ?
         (
@@ -68,6 +73,7 @@ const DocumentList = ({ classes, list,
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state, 'yo from DocumentList')
   const documents = state.documents || {}
   return {
     list: documents.list || [],
@@ -86,7 +92,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push(`/documents/${documentId}`))
     },
     deleteRow: (evt, documentId) => {
-      console.log('delete', documentId);
+      dispatch({
+        type: 'document.DESTROY',
+        documentId
+      })
     },
   }
 }

@@ -33,7 +33,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
-});
+})
 
 class Layout extends Component {
   state = {
@@ -47,7 +47,7 @@ class Layout extends Component {
   }
 
   render() {
-    const classes = this.props.classes;
+    const classes = this.props.classes
 
     return (
       <div className={classes.root}>

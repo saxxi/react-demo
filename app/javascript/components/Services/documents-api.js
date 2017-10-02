@@ -7,7 +7,7 @@ var instance = axios.create({
   }
 })
 
-const getDocuments = (pageNumber, pageSize) => (
+const list = (pageNumber, pageSize) => (
   instance.get('/documents.json', {
     params: {
       page_number: pageNumber,
@@ -16,11 +16,29 @@ const getDocuments = (pageNumber, pageSize) => (
   })
 )
 
-const getDocument = (documentId) => (
+const show = (documentId) => (
   instance.get(`/documents/${documentId}.json`)
 )
 
-export {
-  getDocuments,
-  getDocument,
+const save = (document = {}) => (
+  (document.id) ? (
+    instance.put(`/documents/${document.id}.json`, {
+      document
+    })
+  ) : (
+    instance.post(`/documents.json`, {
+      document
+    })
+  )
+)
+
+const destroy = (documentId) => (
+  instance.delete(`/documents/${documentId}.json`)
+)
+
+export default {
+  list,
+  show,
+  save,
+  destroy,
 }
