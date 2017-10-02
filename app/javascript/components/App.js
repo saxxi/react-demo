@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { withStyles } from 'material-ui/styles'
 
 import withRoot from './withRoot'
 import Layout from './Layout'
@@ -11,18 +12,26 @@ import {
   Home
 } from './Ui/Static'
 
-const App = () => (
+const styles = theme => ({
+  container: {
+    padding: '40px',
+  },
+})
+
+const App = ({ classes }) => (
   <div>
     <Layout>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/documents" component={DocumentList}/>
-        <Route exact path="/documents/:id" component={DocumentSingle}/>
-        <Route exact path="/About" component={About}/>
-        <Route component={NotFound}/>
-      </Switch>
+      <div className={classes.container}>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/documents" component={DocumentList}/>
+          <Route exact path="/documents/:id" component={DocumentSingle}/>
+          <Route exact path="/About" component={About}/>
+          <Route component={NotFound}/>
+        </Switch>
+      </div>
     </Layout>
   </div>
 )
 
-export default withRoot(App)
+export default withRoot(withStyles(styles)(App))

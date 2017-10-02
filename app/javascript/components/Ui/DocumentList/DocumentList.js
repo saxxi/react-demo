@@ -19,7 +19,7 @@ import DocumentRow from './DocumentRow'
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3,
   },
   tableWrapper: {
     overflowX: 'auto',
