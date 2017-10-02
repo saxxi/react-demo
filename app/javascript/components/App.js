@@ -1,6 +1,7 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
+import withRoot from './withRoot'
 import Layout from './Layout'
 import DocumentList from './Ui/DocumentList'
 import DocumentSingle from './Ui/DocumentSingle'
@@ -24,4 +25,4 @@ const App = () => (
   </div>
 )
 
-export default App
+export default withRoot(App)

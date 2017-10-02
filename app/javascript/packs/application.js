@@ -4,10 +4,6 @@ import { ConnectedRouter } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
-// # Appearance
-const theme = createMuiTheme()
-import '../styles/app'
-
 // # App
 import App from '../components/App'
 import { storeFactory } from '../components/Store'
@@ -18,13 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
   ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
-    </MuiThemeProvider>,
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>,
     document.body.appendChild(document.createElement('div')),
   )
 })

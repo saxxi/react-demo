@@ -73,7 +73,6 @@ const DocumentList = ({ classes, list,
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, 'yo from DocumentList')
   const documents = state.documents || {}
   return {
     list: documents.list || [],

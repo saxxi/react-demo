@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'material-ui/Dialog'
+import Dialog from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
-import TextField from 'material-ui/TextField'
+
+import LoginForm from './LoginForm'
 
 class Login extends Component {
   state = {
@@ -15,7 +12,6 @@ class Login extends Component {
 
   constructor() {
     super()
-    this.submitLoginPrepare = this.submitLoginPrepare.bind(this)
     this.nonAuthenticated = this.nonAuthenticated.bind(this)
   }
 
@@ -27,45 +23,29 @@ class Login extends Component {
     this.setState({ open: false })
   }
 
-  submitLoginPrepare = (evt) => {
-    evt.preventDefault()
-    const email = this.state.email
-    const password = this.state.password
+  handleSubmit = (data) => {
+    const { email, password } = data
     this.props.submitLogin(email, password)
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log(newProps, 'componentWillReceiveProps');
+    if (newProps.open === false) {
+      this.setState({ open: false })
+    }
   }
 
   nonAuthenticated() {
     return (
-      <form>
+      <div>
         <Button onClick={this.handleClickOpen} color="contrast">Login</Button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-          <form onSubmit={this.submitLoginPrepare}>
-            <DialogTitle>Please login to continue</DialogTitle>
-            <DialogContent>
-              <div>
-                <TextField name="email"
-                  fullWidth={true}
-                  label="E-mail"
-                  onChange={(evt) => this.setState({ email: evt.target.value })} />
-              </div>
-              <div>
-                <TextField name="password"
-                  fullWidth={true}
-                  label="Password"
-                  onChange={(evt) => this.setState({ password: evt.target.value })} />
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleRequestClose} color="primary">
-                Cancel
-              </Button>
-              <Button type="submit" color="primary">
-                Login
-              </Button>
-            </DialogActions>
-          </form>
+          <LoginForm
+            initialValues={this.props.document}
+            onCloseDialog={this.handleRequestClose.bind(this)}
+            onSubmit={this.handleSubmit.bind(this)} />
         </Dialog>
-      </form>
+      </div>
     )
   }
 
@@ -73,7 +53,7 @@ class Login extends Component {
     return (
       <div>
         {
-          (false) ? (
+          (this.props.isLoggedIn) ? (
             <div>
               <Button color="contrast">Logout</Button>
             </div>
@@ -85,8 +65,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const { user = {} } = state
   return {
-    some: true
+    open: user.loginSuccess !== true,
+    isLoggedIn: user.loginSuccess === true,
   }
 }
 

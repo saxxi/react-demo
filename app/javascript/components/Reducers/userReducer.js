@@ -5,9 +5,8 @@ function userReducer(state = {}, action) {
     case 'login.SUBMIT_SUCCESS':
       return {
         ...state,
-        user: {
-          userToken: action.userToken,
-        },
+        loginSuccess: true,
+        userToken: action.userToken,
       }
       break;
     default:
