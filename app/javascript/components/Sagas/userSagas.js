@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, all } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 
 import { loginUser } from '../Services/user-api'
@@ -16,10 +16,13 @@ function *submitLogin(action) {
     console.log(e);
     return
   }
-  yield put({
-    type: 'login.SUBMIT_SUCCESS',
-    userToken: result.data.auth_token,
-  })
+  yield all([
+    put({
+      type: 'login.SUBMIT_SUCCESS',
+      userToken: result.data.auth_token,
+    }),
+    put(push('/documents'))
+  ])
 }
 
 export {

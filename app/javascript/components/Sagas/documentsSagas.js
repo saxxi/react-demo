@@ -1,4 +1,5 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, all } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 
 import api from '../Services/documents-api'
 import { handleServerError } from '../Utils/serverUtils'
@@ -63,9 +64,12 @@ export function *destroy(action) {
     return yield put(handleServerError(e))
   }
 
-  yield put({
-    type: 'document.DESTROY_SUCCESS',
-  })
+  yield all([
+    put({
+      type: 'document.DESTROY_SUCCESS',
+    }),
+    put(push('/documents'))
+  ])
 }
 
 export default {
