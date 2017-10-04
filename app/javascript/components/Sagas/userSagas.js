@@ -1,10 +1,12 @@
 import { call, put, all } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 
+import { destroySession } from '../Utils/Session'
 import { loginUser } from '../Services/user-api'
 import { setAuthorizationToken } from '../Utils/serverUtils'
 
 function *logout(action) {
+  destroySession()
   setAuthorizationToken()
   yield put(push('/'))
 }

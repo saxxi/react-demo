@@ -19,7 +19,7 @@ export function getUserToken() {
   return cookies.get('authToken')
 }
 
-export function destroySession(pageNumber) {
+export function destroySession() {
   console.log('Session destroyed!')
   cookies.remove('authToken')
 }
