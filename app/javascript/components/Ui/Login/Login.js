@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 
+// import { isSessionValid } from '../../Utils/Session'
 import LoginForm from './LoginForm'
 
 class Login extends Component {
@@ -26,6 +27,10 @@ class Login extends Component {
   handleSubmit = (data) => {
     const { email, password } = data
     this.props.submitLogin(email, password)
+  }
+
+  handleLogout = () => {
+    this.props.logout()
   }
 
   componentWillReceiveProps(newProps) {
@@ -55,7 +60,7 @@ class Login extends Component {
         {
           (this.props.isLoggedIn) ? (
             <div>
-              <Button color="contrast">Logout</Button>
+              <Button onClick={this.handleLogout.bind(this)} color="contrast">Logout</Button>
             </div>
           ) : this.nonAuthenticated()
         }
@@ -66,6 +71,8 @@ class Login extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { user = {} } = state
+  console.log(user);
+  console.log(state);
   return {
     open: user.loginSuccess !== true,
     isLoggedIn: user.loginSuccess === true,
@@ -83,6 +90,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
       })
     },
+    logout: () => {
+      dispatch({
+        type: 'login.LOGOUT',
+      })
+    }
   }
 }
 

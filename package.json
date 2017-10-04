@@ -24,6 +24,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",
     "turbo-react": "^0.8.3",
+    "universal-cookie": "^2.1.0",
     "url-search-params-polyfill": "^2.0.1"
   },
   "devDependencies": {

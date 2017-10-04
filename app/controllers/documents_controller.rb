@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationControllerApi
 
-  # before_action :authenticate!
+  before_action :authenticate!
   before_action :find_resource, only: [:show, :update, :destroy]
 
   def index

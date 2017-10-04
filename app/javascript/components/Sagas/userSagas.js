@@ -2,8 +2,10 @@ import { call, put, all } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 
 import { loginUser } from '../Services/user-api'
+import { setAuthorizationToken } from '../Utils/serverUtils'
 
-function *destroySession(action) {
+function *logout(action) {
+  setAuthorizationToken()
   yield put(push('/'))
 }
 
@@ -16,6 +18,9 @@ function *submitLogin(action) {
     console.log(e);
     return
   }
+
+  setAuthorizationToken(result.data.auth_token)
+
   yield all([
     put({
       type: 'login.SUBMIT_SUCCESS',
@@ -25,7 +30,16 @@ function *submitLogin(action) {
   ])
 }
 
-export {
-  destroySession,
+function *submitSuccess(action) {
+  yield put({
+    type: 'login.LOGGED_IN',
+    loginSuccess: true,
+    userToken: action.userToken,
+  })
+}
+
+export default {
+  logout,
   submitLogin,
+  submitSuccess,
 }

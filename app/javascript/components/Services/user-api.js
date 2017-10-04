@@ -1,6 +1,6 @@
-import axios from 'axios'
+import { apiInstance } from '../Utils/serverUtils'
 
-var instance = axios.create()
+const instance = apiInstance()
 
 const loginUser = (email, password) => (
   instance.post('/auth_user.json', {

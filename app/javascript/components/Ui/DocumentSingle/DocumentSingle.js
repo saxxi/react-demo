@@ -10,7 +10,7 @@ import DocumentForm from './DocumentForm'
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3,
   },
 })
 

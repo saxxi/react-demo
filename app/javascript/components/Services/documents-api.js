@@ -1,11 +1,6 @@
-import axios from 'axios'
-// import {getUserToken} from './Session'
+import { apiInstance } from '../Utils/serverUtils'
 
-var instance = axios.create({
-  headers: {
-    'Authorization': `Bearer ${'getUserToken()'}`
-  }
-})
+const instance = apiInstance()
 
 const list = (pageNumber, pageSize) => (
   instance.get('/documents.json', {
