@@ -15,6 +15,7 @@ import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 
 import DocumentRow from './DocumentRow'
+import documentActions from '../../Actions/documentActions'
 
 const styles = theme => ({
   root: {
@@ -91,10 +92,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push(`/documents/${documentId}`))
     },
     deleteRow: (evt, documentId) => {
-      dispatch({
-        type: 'document.DESTROY',
-        documentId
-      })
+      dispatch(documentActions.destroySingle(documentId))
     },
   }
 }

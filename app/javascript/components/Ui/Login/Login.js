@@ -34,7 +34,6 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps, 'componentWillReceiveProps');
     if (newProps.open === false) {
       this.setState({ open: false })
     }
@@ -71,8 +70,6 @@ class Login extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { user = {} } = state
-  console.log(user);
-  console.log(state);
   return {
     open: user.loginSuccess !== true,
     isLoggedIn: user.loginSuccess === true,

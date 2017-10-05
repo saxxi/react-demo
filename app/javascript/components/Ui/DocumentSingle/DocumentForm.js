@@ -11,6 +11,7 @@ const renderTextField = props => (
     {...props.input}
     label={props.label}
     error={props.touched && props.error}
+    fullWidth={true}
     helperText={props.touched && props.error ? props.error : null}
   />
 )

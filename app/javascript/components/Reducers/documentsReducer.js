@@ -1,9 +1,14 @@
+import {
+  FETCH_LIST_SUCCESS,
+  FETCH_DOCUMENT_SUCCESS,
+} from '../Actions/documentActions'
+
 function documentsReducer(state = {}, action) {
   switch (action.type) {
-    case 'documents.FETCH_LIST_SUCCESS':
+    case FETCH_LIST_SUCCESS:
       return {
         ...state,
-        list: action.documents,
+        list: action.list,
         totalCount: action.totalCount,
         pageNumber: action.pageNumber,
         pageSize: action.pageSize,
@@ -15,7 +20,7 @@ function documentsReducer(state = {}, action) {
 
 function documentReducer(state = {}, action) {
   switch (action.type) {
-    case 'document.FETCH_DOCUMENT_SUCCESS':
+    case FETCH_DOCUMENT_SUCCESS:
       return {
         ...state,
         ...action.document,

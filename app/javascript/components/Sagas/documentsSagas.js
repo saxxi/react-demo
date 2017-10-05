@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 
 import api from '../Services/documents-api'
 import { handleServerError } from '../Utils/serverUtils'
+import documentActions from '../Actions/documentActions'
 
 export function *list(action) {
   const { pageNumber, pageSize } = action
@@ -14,13 +15,12 @@ export function *list(action) {
     return yield put(handleServerError(e))
   }
 
-  yield put({
-    type: 'documents.FETCH_LIST_SUCCESS',
+  yield put(documentActions.fetchListSuccess(
+    result.data.documents,
+    result.data.meta.total_count,
     pageNumber,
-    pageSize,
-    documents: result.data.documents,
-    totalCount: result.data.meta.total_count,
-  })
+    pageSize
+  ))
 }
 
 export function *show(action) {
@@ -31,10 +31,7 @@ export function *show(action) {
     return yield put(handleServerError(e))
   }
 
-  yield put({
-    type: 'document.FETCH_DOCUMENT_SUCCESS',
-    document: result.data,
-  })
+  yield put(documentActions.fetchSingleSuccess(result.data))
 }
 
 export function *save(action) {
@@ -47,12 +44,8 @@ export function *save(action) {
     return yield put(handleServerError(e))
   }
 
-  yield put({
-    type: 'document.SAVE_SUCCESS',
-    document: result.data,
-  })
+  yield put(documentActions.saveSingleSuccess(result.data))
 }
-
 
 export function *destroy(action) {
   const { documentId } = action
@@ -65,9 +58,7 @@ export function *destroy(action) {
   }
 
   yield all([
-    put({
-      type: 'document.DESTROY_SUCCESS',
-    }),
+    put(documentActions.destroySingleSuccess()),
     put(push('/documents'))
   ])
 }

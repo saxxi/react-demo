@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper'
 import { withStyles } from 'material-ui/styles'
 
 import DocumentForm from './DocumentForm'
+import documentActions from '../../Actions/documentActions'
 
 const styles = theme => ({
   root: {
@@ -56,17 +57,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchDocument: (documentId) => {
       if (documentId && documentId != 'new') {
-        dispatch({
-          type: 'document.FETCH_DOCUMENT',
-          documentId: documentId,
-        })
+        dispatch(documentActions.fetchSingle(documentId))
       }
     },
     submitForm: (document) => {
-      dispatch({
-        type: 'document.SAVE',
-        document,
-      })
+      dispatch(documentActions.saveSingle(document))
     },
   }
 }
