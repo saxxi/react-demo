@@ -88,11 +88,11 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePage: (evt, page) => {
       dispatch(push(`?page=${page}`))
     },
-    selectRow: (evt, documentId) => {
-      dispatch(push(`/documents/${documentId}`))
+    selectRow: (evt, id) => {
+      dispatch(push(`/documents/${id}`))
     },
-    deleteRow: (evt, documentId) => {
-      dispatch(documentActions.destroySingle(documentId))
+    deleteRow: (evt, id) => {
+      dispatch(documentActions.destroySingle(id))
     },
   }
 }

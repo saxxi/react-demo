@@ -26,12 +26,12 @@ export function *list(action) {
 export function *show(action) {
   let result
   try {
-    result = yield call(api.show, action.documentId)
+    result = yield call(api.show, action.id)
   } catch (e) {
     return yield put(handleServerError(e))
   }
 
-  yield put(documentActions.fetchSingleSuccess(result.data))
+  yield put(documentActions.fetchSingleSuccess('document', result.data))
 }
 
 export function *save(action) {
@@ -48,11 +48,11 @@ export function *save(action) {
 }
 
 export function *destroy(action) {
-  const { documentId } = action
+  const { id } = action
 
   let result
   try {
-    result = yield call(api.destroy, documentId)
+    result = yield call(api.destroy, id)
   } catch (e) {
     return yield put(handleServerError(e))
   }

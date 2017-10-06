@@ -28,6 +28,7 @@ class DocumentSingle extends Component {
 
   render() {
     const { document = {}, classes } = this.props
+    console.log(document.name, 'from render');
     return (
       <Paper className={classes.root}>
         <div>
@@ -55,13 +56,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchDocument: (documentId) => {
-      if (documentId && documentId != 'new') {
-        dispatch(documentActions.fetchSingle(documentId))
+    fetchDocument: (id) => {
+      if (id && id != 'new') {
+        dispatch(documentActions.fetchSingle(id))
       }
     },
     submitForm: (document) => {
-      dispatch(documentActions.saveSingle(document))
+      dispatch(documentActions.saveSingle('document', document))
     },
   }
 }

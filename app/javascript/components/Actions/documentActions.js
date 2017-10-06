@@ -12,41 +12,41 @@ const fetchList = () => ({
 })
 
 const fetchListSuccess = (
-  documents = [],
+  list = [],
   totalCount = 0,
   pageNumber = 1,
   pageSize = 10,
 ) => ({
   type: FETCH_LIST_SUCCESS,
-  list: documents,
+  list,
   pageNumber,
   pageSize,
   totalCount,
 })
 
-const fetchSingle = documentId => ({
+const fetchSingle = id => ({
   type: FETCH_DOCUMENT,
-  documentId: documentId,
+  id: id,
 })
 
-const fetchSingleSuccess = document => ({
+const fetchSingleSuccess = (objectName, payload) => ({
   type: FETCH_DOCUMENT_SUCCESS,
-  document,
+  [objectName]: payload,
 })
 
-const saveSingle = document => ({
+const saveSingle = (objectName, payload) => ({
   type: SAVE,
-  document,
+  [objectName]: payload,
 })
 
-const saveSingleSuccess = document => ({
+const saveSingleSuccess = payload => ({
   type: SAVE_SUCCESS,
-  document,
+  payload,
 })
 
-const destroySingle = documentId => ({
+const destroySingle = id => ({
   type: DESTROY,
-  documentId
+  id
 })
 
 const destroySingleSuccess = () => ({

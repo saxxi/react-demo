@@ -11,8 +11,8 @@ const list = (pageNumber, pageSize) => (
   })
 )
 
-const show = (documentId) => (
-  instance.get(`/documents/${documentId}.json`)
+const show = (id) => (
+  instance.get(`/documents/${id}.json`)
 )
 
 const save = (document = {}) => (
@@ -27,8 +27,8 @@ const save = (document = {}) => (
   )
 )
 
-const destroy = (documentId) => (
-  instance.delete(`/documents/${documentId}.json`)
+const destroy = (id) => (
+  instance.delete(`/documents/${id}.json`)
 )
 
 export default {
